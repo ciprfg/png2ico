@@ -7,8 +7,8 @@ constexpr auto PNG_CHUNK_SIZE = 8;
 
 struct png_image
 {
-	uint32_t width;             /* png image width */
-	uint32_t height;            /* png image height */
+	uint32_t width = 0;         /* png image width */
+	uint32_t height = 0;        /* png image height */
 	std::vector<uint8_t>buffer; /* png file */
 };
 
@@ -48,7 +48,7 @@ inline int check_png_signature(const uint8_t* signature)
 
 png_image read_png_file(const char* file_name)
 {
-	png_image image;
+	png_image image = { 0 };
 	std::ifstream png_file(file_name, std::ios::binary);
 	if (!png_file.is_open())
 	{
